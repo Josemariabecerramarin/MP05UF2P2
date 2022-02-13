@@ -138,10 +138,10 @@ public class Enunciat {
             Inserir un element que no col·lisiona dins una taula no vuida.
             Inserir un element que col·lisiona dins una taula no vuida, que es col·locarà en 2a posició dins el mateix bucket.
             Inserir un element que col·lisiona dins una taula no vuida, que es col·locarà en 3a posició dins el mateix bucket.
-            Inserir un elements que ja existeix (update) sobre un element que no col·lisiona dins una taula vuida.
-            Inserir un elements que ja existeix (update) sobre un element que no col·lisiona dins una taula no vuida.
-            Inserir un elements que ja existeix (update) sobre un element que si col·lisiona (2a posició) dins una taula no vuida.
-            Inserir un elements que ja existeix (update) sobre un element que si col·lisiona (3a posició) dins una taula no vuida.
+            ->Inserir un elements que ja existeix (update) sobre un element que no col·lisiona dins una taula vuida.
+            ->Inserir un elements que ja existeix (update) sobre un element que no col·lisiona dins una taula no vuida.
+            ->Inserir un elements que ja existeix (update) sobre un element que si col·lisiona (2a posició) dins una taula no vuida.
+            ->Inserir un elements que ja existeix (update) sobre un element que si col·lisiona (3a posició) dins una taula no vuida.
 
     Get:
         S'ha de fer servir el mètode "get" per a comprovar que la taula retorna els elements correctes.
