@@ -27,20 +27,46 @@ public class HashTable {
      * @param key La clau de l'element a afegir.
      * @param value El propi element que es vol afegir.
      */
-    public void put(String key, String value) {
+    /*public void put(String key, String value) {
         int hash = getHash(key);
-        final HashEntry hashEntry = new HashEntry(key, value);
+        final original.HashTable.HashEntry hashEntry = new original.HashTable.HashEntry(key, value);
 
         if(entries[hash] == null) {
             entries[hash] = hashEntry;
         }
         else {
-            HashEntry temp = entries[hash];
+            original.HashTable.HashEntry temp = entries[hash];
             while(temp.next != null)
                 temp = temp.next;
 
             temp.next = hashEntry;
             hashEntry.prev = temp;
+        }
+    }*/
+
+    public void put(String key, String value) {
+        int hash = getHash(key);
+        final HashEntry hashEntry = new HashEntry(key, value);
+        // Toca esto
+
+        if(entries[hash] == null) {
+            ITEMS++;
+            entries[hash] = hashEntry;
+        }
+        else {
+            HashEntry temp = entries[hash];
+
+            // si la key es la misma que me cambie el valor y si no que me añada al lado.
+            if(temp.key.equals(key)){
+                temp.value = value;
+            }else{
+                while(temp.next != null)
+                    temp = temp.next;
+
+                temp.next = hashEntry;
+                hashEntry.prev = temp;
+            }
+
         }
     }
 
