@@ -46,21 +46,57 @@ class HashTableTest {
         hashTable.put("24", "ratonero");
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, ratita]\n" +
-                " bucket[2] = [2, raton] -> [13, ratona] -> [24, ratoncito] -> [13, ratatosqr] -> [24, ratonero]", hashTable.toString());
+                " bucket[2] = [2, raton] -> [13, ratatosqr] -> [24, ratonero]", hashTable.toString());
 
     }
 
 
     @Test
     void get() {
-        Assertions.assertNull(hashTable.get("1"));
+        HashTable hashTable = new HashTable();
+
+        //Obtenir un element que no col·lisiona dins una taula vuida.
+        hashTable.put("1", "ratita");
+        Assertions.assertEquals("ratita", hashTable.get("1"));
+
+        //Obtenir un element que col·lisiona dins una taula (1a posició dins el mateix bucket).
+        hashTable.put("2", "raton");
+        Assertions.assertEquals("raton", hashTable.get("2"));
+
+        //Obtenir un element que col·lisiona dins una taula (2a posició dins el mateix bucket).
+        hashTable.put("13", "ratatosqr");
+        Assertions.assertEquals("ratatosqr", hashTable.get("13"));
+
+        //Obtenir un element que col·lisiona dins una taula (3a posició dins el mateix bucket).
+        hashTable.put("24", "ratonero");
+        Assertions.assertEquals("ratonero", hashTable.get("24"));
+
+        //Obtenir un elements que no existeix perquè la seva posició està buida.
+        Assertions.assertEquals(null, hashTable.get("0"));
+
+        /*Assertions.assertEquals(null,hashTable.get("27"));*/
+
+        //Obtenir un elements que no existeix, tot i que la seva posició està ocupada per un altre que no col·lisiona.
+        hashTable.put("0", "ratillas");
+        Assertions.assertEquals(null, hashTable.get("11"));
+
+        //Obtenir un elements que no existeix, tot i que la seva posició està ocupada per 3 elements col·lisionats.
+        Assertions.assertEquals(null, hashTable.get("35"));
+        /*Assertions.assertNull(hashTable.get("1"));*/
     }
 
     @Test
     void drop() {
+        HashTable hashTable = new HashTable();
+
         hashTable.put("1", "rata");
+        hashTable.put("2", "raton");
+        hashTable.put("13", "ratatosqr");
+        hashTable.put("24", "ratonero");
+
         hashTable.drop("1");
-        Assertions.assertNull(hashTable.get("1"));
+        Assertions.assertEquals("\n" +
+                " bucket[2] = [2, raton] -> [13, ratatosqr] -> [24, ratonero]", hashTable.toString());
     }
 
     @Test
