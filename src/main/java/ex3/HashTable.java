@@ -1,4 +1,4 @@
-package ex2;
+package ex3;
 
 // Original source code: https://gist.github.com/amadamala/3cdd53cb5a6b1c1df540981ab0245479
 // Modified by Fernando Porrino Serrano for academic purposes.
@@ -48,25 +48,26 @@ public class HashTable {
         int hash = getHash(key);
         boolean updatear = false;
         final HashEntry hashEntry = new HashEntry(key, value);
+        // Toca esto
 
         if(entries[hash] == null) {
-            ITEMS++;                                                //Vamos sumando items para ue despues podamos realizar el count
+            ITEMS++;                                                     //Vamos sumando items para ue despues podamos realizar el count
             entries[hash] = hashEntry;
         }
         else {
             HashEntry temp = entries[hash];
 
-            if(temp.key.equals(key)){                                //Aqui actualizamos la primera posicion del bucket. si la key es la misma que me cambie el valor,si no, que lo añada a continuacion.
+            if(temp.key.equals(key)){                                      //Aqui actualizamos la primera posicion del bucket. si la key es la misma que me cambie el valor,si no, que lo añada a continuacion.
                 temp.value = value;
             }else{
                 while(temp.next != null){
                     temp = temp.next;
-                    if(temp.key.equals(key)){                         //Aqui actualizamos los que estan a continuacion.
+                    if(temp.key.equals(key)){                               //Aqui actualizamos los que estan a continuacion.
                     temp.value = value;
                     updatear = true;
                     }
                 }
-                if (!updatear) {                                      //Aqui añadimos uno nuevo dentro del mismo bucket. También añadimos uno mas al conteo
+                if (!updatear) {                                          //Aqui añadimos uno nuevo dentro del mismo bucket. También añadimos uno mas al conteo
                     temp.next = hashEntry;
                     hashEntry.prev = temp;
                     ITEMS++;
@@ -108,7 +109,6 @@ public class HashTable {
             }
             return temp.value;
         }
-
         return null;
     }
 
@@ -136,7 +136,7 @@ public class HashTable {
         if(entries[hash] != null) {
 
             HashEntry temp = entries[hash];
-            while( !temp.key.equals(key)){                           //Recorremos hasta encontrar la clave que queremos eliminar
+            while( !temp.key.equals(key)){                             //Recorremos hasta encontrar la clave que queremos eliminar
                 if (temp.next != null){
                     temp = temp.next;
                 }else {
@@ -145,21 +145,21 @@ public class HashTable {
                 }
             }
             if (temp != null){
-                if(temp.prev == null) {                               //Aqui borramos el que esta en la primera posicion cuando no hay colision
+                if(temp.prev == null) {                                 //Aqui borramos el que esta en la primera posicion cuando no hay colision
                     if (temp.next == null){
                         entries[hash] = null;
-                    }else{                                            //Aqui borramos el primero cuando hay colision
+                    }else{                                              //Aqui borramos el primero cuando hay colision
                         entries[hash] = temp.next;
                     }
-                } else {                                              //Aqui borramos el que tiene un anterior y un posterior en nuestro caso el del medio
+                } else {                                                 //Aqui borramos el que tiene un anterior y un posterior en nuestro caso el del medio
                     if(temp.next != null){
                         temp.next.prev = temp.prev;
                         temp.prev.next = temp.next;
-                    }else{                                            //Aqui borramos el ultimo
+                    }else{                                                //Aqui borramos el ultimo
                         temp.prev.next = null;
                     }
                 }
-                ITEMS--;                                              //Aqui restamos del conteo anterior cuando borramos un item
+                ITEMS--;                                                  //Aqui restamos del conteo anterior cuando borramos un item
             }
         }
     }
@@ -291,22 +291,7 @@ public class HashTable {
         return  foundKeys;
     }
 
-    public static void main(String[] args) {
-        HashTable hashTable = new HashTable();
-        
-        // Put some key values.
-        for(int i=0; i<50; i++) {
-            final String key = String.valueOf(i);
-            hashTable.put(key, key);
-        }
-
-        // Print the HashTable structure
-        log("****   HashTable  ***");
-        log(hashTable.toString());
-        log("\nValue for key(20) : " + hashTable.get("20") );
-    }
-
-    private static void log(String msg) {
+    public static void log(String msg) {
         System.out.println(msg);
     }
 }

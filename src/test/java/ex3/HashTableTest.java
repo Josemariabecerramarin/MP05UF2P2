@@ -1,12 +1,11 @@
-package ex2;
+package ex3;
 
+import ex2.HashTable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class HashTableTest {
-    ex2.HashTable hashTable = new ex2.HashTable();
+    ex3.HashTable hashTable = new ex3.HashTable();
 
     @Test
     void put() {
@@ -17,7 +16,7 @@ class HashTableTest {
         Assertions.assertEquals(1 , hashTable.count());
         Assertions.assertEquals(16, hashTable.size());
 
-        //No colisiona en la tabla vacia
+        //No colisiona en la tabla no vacia
         hashTable.put("2", "raton");
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, rata]\n" +
@@ -33,7 +32,8 @@ class HashTableTest {
         Assertions.assertEquals( 3, hashTable.count());
         Assertions.assertEquals(16, hashTable.size());
 
-        hashTable.put("24", "ratoncito");//Colisiona dentro de una tabla no vacia y se colocará en 3 posición
+        //Colisiona dentro de una tabla no vacia y se colocará en 3 posición
+        hashTable.put("24", "ratoncito");
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, rata]\n" +
                 " bucket[2] = [2, raton] -> [13, ratona] -> [24, ratoncito]", hashTable.toString());
@@ -70,7 +70,7 @@ class HashTableTest {
 
     @Test
     void get() {
-        hashTable = new ex2.HashTable();
+        hashTable = new ex3.HashTable();
 
         //Obtenir un element que no col·lisiona dins una taula vuida.
         hashTable.put("1", "ratita");
@@ -91,8 +91,6 @@ class HashTableTest {
         //Obtenir un elements que no existeix perquè la seva posició està buida.
         Assertions.assertEquals(null, hashTable.get("0"));
 
-        /*Assertions.assertEquals(null,hashTable.get("27"));*/
-
         //Obtenir un elements que no existeix, tot i que la seva posició està ocupada per un altre que no col·lisiona.
         hashTable.put("0", "ratillas");
         Assertions.assertEquals(null, hashTable.get("11"));
@@ -104,7 +102,7 @@ class HashTableTest {
 
     @Test
     void drop() {
-        hashTable = new ex2.HashTable();
+        hashTable = new ex3.HashTable();
 
         hashTable.put("1", "rata");
         hashTable.put("2", "raton");
