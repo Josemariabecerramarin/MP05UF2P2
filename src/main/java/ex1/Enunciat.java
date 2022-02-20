@@ -14,5 +14,6 @@ public class Enunciat {
              l'execució de proves sobre GitHub funciona correctament.
         3.3. Explica en què consisteix el concepte de Continuous Integration (CI) i quina relació té amb el que
              acabes de fer en aquest exercici.
+
 */
 }
