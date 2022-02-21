@@ -17,7 +17,7 @@ class HashTableTest {
         Assertions.assertEquals(1 , hashTable.count());
         Assertions.assertEquals(16, hashTable.size());
 
-        //No colisiona en la tabla vacia
+        //No colisiona en la tabla no vacia
         hashTable.put("2", "raton");
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, rata]\n" +
@@ -91,7 +91,6 @@ class HashTableTest {
         //Obtenir un elements que no existeix perquè la seva posició està buida.
         Assertions.assertEquals(null, hashTable.get("0"));
 
-        /*Assertions.assertEquals(null,hashTable.get("27"));*/
 
         //Obtenir un elements que no existeix, tot i que la seva posició està ocupada per un altre que no col·lisiona.
         hashTable.put("0", "ratillas");

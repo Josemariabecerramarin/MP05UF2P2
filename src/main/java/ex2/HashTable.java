@@ -100,7 +100,7 @@ public class HashTable {
             HashEntry temp = entries[hash];
 
             while( !temp.key.equals(key)){
-                if (temp.next != null){                                 //Si la clave es diferente entramos a comprobar todo lo que hay en el bucket
+                if (temp.next != null){                                 //Si la clave es diferente entramos a comprobar el siguiente
                     temp = temp.next;
                 }else{
                     return null;
